@@ -147,7 +147,10 @@ for M=1:4
     end
 end
 
-% save fig5_2.mat pn_fw pnt_fw pnn_fw ppn_fw
+save fig5_2.mat pn_fw pnt_fw pnn_fw ppn_fw
+
+% load intermedia data for reproduce the results in a quicker way (Deposited data links provided in the paper)
+load('fig5.mat')
 
 %% plot fig 5a
 figure

@@ -1,15 +1,8 @@
-% run codes in 'model analysis' to obtain the data for figures
+% run codes in "Model simulation programs" to get simulation data
+% run codes in "model analysis" to obtain the data for figures
 
+% load intermedia data for reproduce the results in a quicker way (Deposited data links provided in the paper)
 load('fig7ac.mat')
-
-%% model
-for m=1:4
-
-[m_anes{m},sig_anes{m}]=deal(mean(coh_anes{m},2),std(coh_anes{m},1,2));
-[m_awake{m},sig_awake{m}]=deal(mean(coh_awake{m},2),std(coh_awake{m},1,2));
-[m_diff{m},sig_diff{m}]=deal(mean(coh_anes{m}-coh_awake{m},2),std(coh_anes{m}-coh_awake{m},1,2));
-
-end
 
 %% Fig7a,plot example
 % plot example mean+std
@@ -90,73 +83,3 @@ for m=2:4
     end
     box off
 end
-% 
-% for m=1:4
-% anes=coh_anes{m};
-% anes_c1=anes(1:3,:);
-% anes_c1=reshape(anes_c1,[1,3*size(anes,2)]);
-% anes_c2=anes(5:7,:);
-% anes_c2=reshape(anes_c1,[1,3*size(anes,2)]);
-% anes_c=[anes_c1;anes_c2];
-% [m_anes{m},sig_anes{m}]=deal(mean(anes_c,2),std(anes_c,1,2)./sqrt(trial));
-% awak=coh_awake{m};
-% awak_c1=awak(1:3,:);
-% awak_c1=reshape(awak_c1,[1,3*size(awak,2)]);
-% awak_c2=awak(5:7,:);
-% awak_c2=reshape(awak_c2,[1,3*size(awak,2)]);
-% awak_c=[awak_c1;awak_c2];
-% [m_awake{m},sig_awake{m}]=deal(mean(awak_c,2),std(awak_c,1,2)./sqrt(trial));
-% end
-% 
-% % plot figure
-% close all;
-% fig=figure();
-% % set(gcf,'Position',[100,50,600,750]);
-% fontsize=11;
-% meandelta=[m_anes{2},m_awake{2}];
-% stddelta=[sig_anes{2},sig_awake{2}];
-% subplot 131
-% bar(meandelta(), 'BarWidth',0.8)
-% % legend('anesthetized','awake')
-% hold on
-% errorbar([0.85,1.15;1.85,2.15],meandelta,stddelta.*0,stddelta,'.k')
-% colormap(jet) 
-% ylabel('Coherence','fontsize',fontsize);
-% xlabel('Strength of long-range connectivity','fontsize',fontsize);
-% xlim([0.5,2.5]);ylim([0,0.2]);
-% title('0.5-4 Hz');
-% box off
-% 
-% 
-% subplot 132
-% meandelta=[m_anes{3},m_awake{3}];
-% stddelta=[sig_anes{3},sig_awake{3}];
-% bar(meandelta(), 'BarWidth',0.8)
-% % legend('anesthetized','awake')
-% hold on
-% errorbar([0.85,1.15;1.85,2.15],meandelta,stddelta.*0,stddelta,'.k')
-% colormap(jet) 
-% ylabel('Coherence','fontsize',fontsize);
-% xlabel('Strength of long-range connectivity','fontsize',fontsize);
-% xlim([0.5,2.5]);ylim([0,0.03]);
-% title('4-8 Hz');
-% box off
-% 
-% subplot 133
-% meandelta=[m_anes{4},m_awake{4}];
-% stddelta=[sig_anes{4},sig_awake{4}];
-% bar(meandelta(), 'BarWidth',0.8)
-% % legend('anesthetized','awake')
-% hold on
-% errorbar([0.85,1.15;1.85,2.15],meandelta,stddelta.*0,stddelta,'.k')
-% colormap(jet) 
-% ylabel('Average coherence','fontsize',fontsize);
-% xlabel('Strength of long-range connectivity','fontsize',fontsize);
-% xlim([0.5,2.5]);ylim([0,0.03]);
-% 
-% % legend('anes','awake');
-% ylabel('Coherence','fontsize',fontsize);
-% xlabel('Strength of long-range connectivity','fontsize',fontsize);
-% title('8-12 Hz');
-% legend('anesthetized','awake');
-% box off

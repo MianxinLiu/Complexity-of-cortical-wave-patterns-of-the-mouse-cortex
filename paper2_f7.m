@@ -46,7 +46,6 @@ end
 %% coherernce between anes and awake
 %% regional voltage data 
 
-load('fig7model.mat','rsmyROI')
 explabel={[2,18],[2,7],[1,3],[1,3],[1,6]};
 path={'2017 APR 19 publish','2018Feb 04 M2553M publish','2018Feb 04 M2555M publish','2018Feb 04 M2556M publish','2018Feb 04 M2560F publish'};
 
@@ -99,7 +98,9 @@ for M=1:5%M=6 is M1 awake states
     end
 end
 
+% load intermedia data for reproduce the results (Deposited data links provided in the paper)
 load('fig7bd.mat')
+
 %% coherence on difference frequency band
 % delta
 cxf_delta_a=zeros(2,15);

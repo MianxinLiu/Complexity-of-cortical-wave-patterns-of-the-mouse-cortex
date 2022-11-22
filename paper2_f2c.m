@@ -179,6 +179,9 @@ for M=1:4%M=6 is M1 awake states
     end
 end
 
+% load intermedia data for reproduce the results in a quicker way (Deposited data links provided in the paper)
+load('fig2c_large_wave.mat')
+
 displace=[-0.1,-0.05,0,0.05,0.1];
 cols=[0,114,189;
     217,83,23;

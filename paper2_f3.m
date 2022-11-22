@@ -94,7 +94,11 @@ end
 %figure;imagesc(colmatrix)
 intermatrix=rawmatrix & colmatrix;
 
+% load intermedia data for reproduce the results (Deposited data links provided in the paper)
+load('fig3.mat')
+
 %% fig3a
+
 [U0, S0, V0, U, S, V, reUav] = plotcsvd(vfsT.*cortexMaskS, 5, 1:T, false, 1, intermatrix);
 save (['exp' num2str(exp) '_svdMode_all_temp.mat'], 'U0','S0','V0','U','S','V','reUav');
 

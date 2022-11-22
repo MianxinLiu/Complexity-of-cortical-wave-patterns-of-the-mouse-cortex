@@ -1,3 +1,8 @@
+clear;
+% run codes in "Model simulation programs" to get simulation data
+% run codes in "model analysis" to obtain the data for figures
+% including optical_flow_model.m, mousePatternDetectionmodel.m
+
 n=10;
 orderD=zeros(5999,6,n);
 orderS=zeros(5999,6,n);
@@ -70,6 +75,10 @@ end
 %figure;imagesc(colmatrix)
 intermatrix=rawmatrix & colmatrix;
 figure;imagesc(intermatrix)
+
+% load intermedia data for reproduce the results in a quicker way (Deposited data links provided in the paper)
+load('fig6a.mat')
+load('fig6.mat')
 
 %% Fig.6a,plot figures 
 figure
