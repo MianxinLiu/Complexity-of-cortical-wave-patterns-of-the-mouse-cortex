@@ -76,18 +76,17 @@ end
 intermatrix=rawmatrix & colmatrix;
 figure;imagesc(intermatrix)
 
-% load intermedia data for reproduce the results in a quicker way (Deposited data links provided in the paper)
-load('fig6a.mat')
-load('fig6.mat')
-
 %% Fig.6a,plot figures 
 figure
-M=3;
-p=[5 0];
+%M=3;
+%p=[5 0];
 
 for i=1:2
     for j=1:3
-    load (['./model_data/result_of_p' num2str(p(i)) '_trial' num2str(M) '_50_50_3000.mat'],'vx','vy','Ve');
+    %load (['./model_data/result_of_p' num2str(p(i)) '_trial' num2str(M) '_50_50_3000.mat'],'vx','vy','Ve');
+	
+	% load intermedia data for reproduce the results in a quicker way (Deposited data links provided in the paper)
+	load(['Fig6a_row' num2str(i) '.mat'],'vx','vy','Ve')
     subplot(2,3,(i-1)*3+j) 
     itime=200+8*j;
     imagesc(Ve(1:30,1:30,itime))
@@ -103,6 +102,9 @@ for i=1:2
 
     end
 end
+
+% load intermedia data for reproduce the results in a quicker way (Deposited data links provided in the paper)
+load('fig6.mat')
 
 %% mean and sd for 10 trials
 xx=zeros(6,6);
