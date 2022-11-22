@@ -207,7 +207,36 @@ xlabel('Speed (mm/s)')
 ylabel('Histogram (log)')
 legend({'Fully awake'})
 
-p=friedman(sptest,3)
+% friedman test
+speed_fri=[];
+cd('/media/user/Elements/NC Data/2017 APR 19 publish');
+load ('Exp001_Fluo_002_001_sequenceDataFiltered_bandpass0.5_12_box_gp_done.mat','vfsT_a','cortexMask');
+speed=reshape(abs(vfsT_a),size(vfsT_a,1)*size(vfsT_a,2),size(vfsT_a,3));
+cortexMaskin=reshape(cortexMask,size(vfsT_a,1)*size(vfsT_a,2),1);
+speed(cortexMaskin==0,:)=[];
+speed=speed*17.4;
+speed=reshape(speed,1,[]);
+speed_fri=[speed_fri,speed'];
+
+load ('Exp001_Fluo_018_001_sequenceDataFiltered_bandpass0.5_12_box_gp_done.mat','vfsT_a');
+speed=reshape(abs(vfsT_a),size(vfsT_a,1)*size(vfsT_a,2),size(vfsT_a,3));
+cortexMaskin=reshape(cortexMask,size(vfsT_a,1)*size(vfsT_a,2),1);
+speed(cortexMaskin==0,:)=[];
+speed=speed*17.4;
+speed=reshape(speed,1,[]);
+speed_fri=[speed_fri,speed'];
+
+cd('/media/user/Elements/NC Data/2017 Apr 18 publish');
+load ('Exp001_Fluo_001_001_sequenceDataFiltered_bandpass0.5_12_box_gp_done.mat','vfsT_a');
+speed=reshape(abs(vfsT_a),size(vfsT_a,1)*size(vfsT_a,2),size(vfsT_a,3));
+cortexMaskin=reshape(cortexMask,size(vfsT_a,1)*size(vfsT_a,2),1);
+speed(cortexMaskin==0,:)=[];
+speed=speed*17.4;
+speed=reshape(speed,1,[]);
+speed_fri=[speed_fri(1:length(speed),:),speed'];
+
+p1 = friedman(speed_fri(:,1:2),1); % anes vs post woken
+p2 = friedman(speed_fri(:,[1,3]),1); % anes vs fully awake
 
 %% fig. c
 displace=[-0.1,-0.05,0,0.05,0.1];
