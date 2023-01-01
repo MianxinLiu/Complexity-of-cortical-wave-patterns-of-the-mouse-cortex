@@ -32,6 +32,7 @@ signalGrid = rsDataT(:,:,itime);
 colorMapSpec = jet;
 sigLims = [-0.005 0.005];
 vfColor = [0 0 0];
+vfScale =1;
 
 % Apply mask to data
 cortexMask(find(cortexMask<0.7))=NaN;

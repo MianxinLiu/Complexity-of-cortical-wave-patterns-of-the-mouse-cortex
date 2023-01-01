@@ -183,55 +183,42 @@ xticklabels({'plane','standing','sink','source','saddle','unclassified'})
 ylabel('Average duration(ms)')
 
 
-%% Fig5b,times of pattern number/sec
+%% Fig5b,Proportion of patterns
 figure
-pnM=pnn(:,:,:)/180;
-pnM_fw=pnn_fw(:,:,:)/180;
 
-for i=1:6
-    boxplot(squeeze(pnM(1,i, :)), 'Positions', i-0.2,'Colors','b')
-    hold on
-    boxplot(squeeze(pnM(2,i, :)), 'Positions',i,'Colors','r')
-    boxplot(squeeze(pnM_fw(i, :)), 'Positions',i+0.2,'Colors',[1,0.54,0])
-end
+bar(1,mean(squeeze(pnn(1,:,:))./sum(squeeze(pnn(1,:,:))),2),"stacked");
+hold on
+bar(2,mean(squeeze(pnn(2,:,:))./sum(squeeze(pnn(2,:,:))),2),"stacked");
+bar(3,mean(squeeze(pnn_fw)./sum(squeeze(pnn_fw)),2),"stacked");
 
-for m=1:5
-    scatter((1:6)-0.2+0.1,squeeze(pnM(1,:,m)),64,'b.')
-end
-for m=1:5
-    scatter((1:6)+0.1,squeeze(pnM(2,:,m)),64,'r.')
-end
-for m=1:19
-    scatter((1:6)+0.2+0.1,squeeze(pnM_fw(:,m)),64,[1,0.54,0],'.')
-end
+ylabel('Pattern type proportion')
+ylim([0 1.01])
+legend('plane','standing','sink','source','saddle','unclassified', 'Location', 'bestoutside')
+xticks([1,2,3])
+xticklabels({'AN', 'PW', 'FA'})
 
-xlim([0,6.5])
-ylim([-3,105])
-xticks([1:6])
-xticklabels({'plane','standing','sink','source','saddle','unclassified'})
-ylabel('Pattern number/sec')
+%% Fig5c
+plot_data = NaN(10,3);
 
-%% Fig5c,fit occupation time, wave number
-clear pnnM pnnMr pnnM_fw pnnMr_fw
+plot_data(1:5,1) = sum(squeeze(pnn(1,:,:)))./mean(sum(squeeze(pnn(1,:,:))))';% anes, normalised to average total pattern number across mice at anes state
+
+plot_data(1:5,2) = sum(squeeze(pnn(2,:,:)))./sum(squeeze(pnn(1,:,:))); % post-woken, normalised to the  total pattern number of the corresponding mice at anes state
+
+plot_data(1:10,3) = sum(pnn_fw(:,1:10))./sum(squeeze(pnn(1,:,1))); % fully awake (only trials from mouse 1), normalised to the  total pattern number of mouse 1 at anes state
+ 
+
 figure
-pnnM=squeeze(nanmean(ppn(:,:,:),3))/(180*150);
-pnnM(sum(pnnM')==0,:)=[];
 
-pnnM_fw=squeeze(nanmean(ppn_fw(:,:),2))/(180*150);
-pnnM_fw(sum(pnnM_fw')==0,:)=[];
+hold on
 
-for i=1:5
-   pnnMr(:,i)=pnnM(:,5+1-i); 
-end
+boxplot([plot_data])
 
-for i=1:5
-   pnnMr_fw(i)=pnnM_fw(5+1-i); 
-end
+scatter(ones(1,5)*1.2, plot_data(1:5,1), 'k', 'filled' );
 
-bar([1, 1.5, 2],[pnnMr; pnnMr_fw],'stacked')
-xticks([1,1.5,2])
-xticklabels({'anesthetized','post woken','fully awake'})
+scatter(ones(1,5)*2.2, plot_data(1:5,2), 'k' , 'filled');
 
-legend('p>3','p3','p2','p1','p0')
-ylim([0,1]);
-ylabel('Proportion of pattern number/frame')
+scatter(ones(1,10)*3.2, plot_data(1:10,3), 'k', 'filled', 'jitter', 'on', 'jitterAmount', 0.08);
+
+xticklabels({'AN';'PW';'FA'})
+
+ylabel('Total detected pattern number (normalised)')
