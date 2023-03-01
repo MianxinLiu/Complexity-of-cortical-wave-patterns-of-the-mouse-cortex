@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% MANN-KENDALL TEST ORIGINAL %%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function[H,p_value]=Mann_Kendall(V,alpha)
+function[H,p_value,Z]=Mann_Kendall(V,alpha)
 %%%%%%%%%%%%%%%%%
 %%% Performs original Mann-Kendall test of the null hypothesis of trend
 %%% absence in the vector V,  against the alternative of trend. 

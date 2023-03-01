@@ -234,5 +234,5 @@ title('Theoretical wave speed','fontsize',fontsize);
 set(gca, 'XDir','reverse');
 box off;
 
-[~,p1]=Mann_Kendall(TheoryWaveVol,0.05)
-[~,p2]=Mann_Kendall(TheoryWaveVol_largeWave,0.05)
+[~,p1,Z]=Mann_Kendall(TheoryWaveVol,0.05)
+[~,p2,Z]=Mann_Kendall(TheoryWaveVol_largeWave,0.05)

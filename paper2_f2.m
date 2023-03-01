@@ -388,6 +388,8 @@ xticklabels({'Anesthetized','Post woken','Fully awake'})
 
 % statistical test
 [p,h]= signrank(all_order_a2w(:,1),all_order_a2w(:,2),'tail','right')
+[p,h,stat]= ranksum(all_order_a2w(:,1),all_order_fa(:,1),'tail','right')
+
 
 %% fig 2e
 figure
@@ -409,5 +411,6 @@ xticklabels({'Anesthetized','Post woken','Fully awake'})
 ylim([0.3,1])
 
 [p,h]= signrank(all_order_a2w(:,3),all_order_a2w(:,4),'tail','left')
+[p,h,stat]= ranksum(all_order_a2w(:,3),all_order_fa(:,2),'tail','left')
 
 
